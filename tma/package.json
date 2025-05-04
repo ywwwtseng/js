@@ -1,0 +1,24 @@
+{
+  "name": "@libs/tma",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc --jsx react-jsx"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "@libs/json": "workspace:*",
+    "@libs/hooks": "workspace:*",
+    "@libs/client": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.0"
+  },
+  "peerDependencies": {
+    "@telegram-apps/sdk-react": "^3.2.4",
+    "@tonconnect/ui": "^2.1.0",
+    "react": "^19.1.0"
+  }
+}

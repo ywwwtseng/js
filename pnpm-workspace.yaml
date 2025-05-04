@@ -1,5 +1,8 @@
 packages:
-  - "apps/*"
   - "object"
   - "delay"
+  - "json"
   - "telegram-bot"
+  - "tma"
+  - "client"
+  - "hooks"

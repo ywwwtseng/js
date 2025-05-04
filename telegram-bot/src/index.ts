@@ -1,5 +1,5 @@
-import { prune } from "@libs/object";
-import { delay } from "@libs/delay";
+import { prune } from '@libs/object';
+import { delay } from '@libs/delay';
 
 export const MAX_MESSAGES_PER_MINUTE = 24;
 export const DELAY_BETWEEN_MESSAGES_MS = (60 * 1000) / MAX_MESSAGES_PER_MINUTE;
@@ -30,16 +30,16 @@ export async function sendPhoto({
     await delay(DELAY_BETWEEN_MESSAGES_MS);
 
     const res = await fetch(`https://api.telegram.org/bot${token}/sendPhoto`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(
         prune({
           chat_id,
           photo: photo_url,
           caption: message,
-          parse_mode: "Markdown",
+          parse_mode: 'Markdown',
           reply_markup,
         }),
       ),

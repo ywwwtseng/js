@@ -1,14 +1,13 @@
 {
   "name": "@libs",
-  "type": "module",
-  "scripts": {
-    "build": "turbo run build"
-  },
-  "license": "ISC",
   "devDependencies": {
     "turbo": "^2.5.0",
     "typescript": "^5.8.3"
   },
+  "license": "ISC",
   "packageManager": "pnpm@9.13.2",
-  "workspaces": ["delay", "object", "telegram-bot"]
+  "scripts": {
+    "build": "turbo run build"
+  },
+  "type": "module"
 }

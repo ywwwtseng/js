@@ -1,0 +1,17 @@
+{
+  "name": "@libs/hooks",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc --jsx react-jsx"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "devDependencies": {
+    "@types/react": "^19.1.0"
+  },
+  "peerDependencies": {
+    "react": "^19.1.0"
+  }
+}
