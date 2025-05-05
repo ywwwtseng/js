@@ -19,6 +19,8 @@ importers:
 
   delay: {}
 
+  errors: {}
+
   hooks:
     dependencies:
       react:
@@ -79,6 +81,22 @@ importers:
         specifier: ^19.1.0
         version: 19.1.2
 
+  tma-init-data:
+    dependencies:
+      '@libs/errors':
+        specifier: workspace:*
+        version: link:../errors
+      '@libs/json':
+        specifier: workspace:*
+        version: link:../json
+      '@telegram-apps/init-data-node':
+        specifier: ^2.0.3
+        version: 2.0.7(typescript@5.8.3)
+    devDependencies:
+      '@types/node':
+        specifier: ^22.15.3
+        version: 22.15.3
+
 packages:
 
   '@telegram-apps/bridge@1.9.2':
@@ -86,6 +104,9 @@ packages:
 
   '@telegram-apps/bridge@2.8.2':
     resolution: {integrity: sha512-DpdvK1FUSklQFRaqV84rzhxUU/Pe6tVW497CtUfUZ87wenf/NY8Tvd5GONTJpAVb+H7wGcEcolielLOq1dSV5g==}
+
+  '@telegram-apps/init-data-node@2.0.7':
+    resolution: {integrity: sha512-MNpZBgkvXoFZicO+JufhmCV4FusEjDmMBgK76ubvPkhY5SiIXeriDe3HYXqCE++2uRReP0xDZZVrYxbAS5cCnw==}
 
   '@telegram-apps/navigation@1.0.13':
     resolution: {integrity: sha512-TsUueB5LQp77GQHoMa93nq26Uw7GJjrFCPbyseMVU7aBBxAc+8CV2IYytRwcVp5sv/q7ThK5X4JaKn2V1yBHDQ==}
@@ -137,6 +158,9 @@ packages:
 
   '@tonconnect/ui@2.1.0':
     resolution: {integrity: sha512-Vds7DH8WmFjMYuFmaVBFoxOG7orjiHw+TH/ySbGhCt4N8yEwJT2GSnttmG5PYJ117H/5S81gCUVc03c1Dh+MDQ==}
+
+  '@types/node@22.15.3':
+    resolution: {integrity: sha512-lX7HFZeHf4QG/J7tBZqrCAXwz9J5RD56Y6MpP0eJkka8p+K0RY/yBTW7CYFJ4VGCclxqOLKmiGP5juQc6MKgcw==}
 
   '@types/react@19.1.2':
     resolution: {integrity: sha512-oxLPMytKchWGbnQM9O7D67uPa9paTNxO7jVoNMXgkkErULBPhPARCfkKL9ytcIJJRGjbsVwW4ugJzyFFvm/Tiw==}
@@ -229,6 +253,9 @@ packages:
     resolution: {integrity: sha512-z6PJ8Lml+v3ichVojCiB8toQJBuwR42ySM4ezjXIqXK3M0HczmKQ3LF4rhU55PfD99KEEXQG6yb7iOMyvYuHew==}
     hasBin: true
 
+  undici-types@6.21.0:
+    resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
+
   valibot@1.0.0:
     resolution: {integrity: sha512-1Hc0ihzWxBar6NGeZv7fPLY0QuxFMyxwYR2sF1Blu7Wq7EnremwY2W02tit2ij2VJT8HcSkHAQqmFfl77f73Yw==}
     peerDependencies:
@@ -270,6 +297,14 @@ snapshots:
       error-kid: 0.0.7
       mitt: 3.0.1
       valibot: 1.0.0(typescript@5.8.3)
+    transitivePeerDependencies:
+      - typescript
+
+  '@telegram-apps/init-data-node@2.0.7(typescript@5.8.3)':
+    dependencies:
+      '@telegram-apps/transformers': 2.2.3(typescript@5.8.3)
+      '@telegram-apps/types': 2.0.0
+      error-kid: 0.0.7
     transitivePeerDependencies:
       - typescript
 
@@ -358,6 +393,10 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
+  '@types/node@22.15.3':
+    dependencies:
+      undici-types: 6.21.0
+
   '@types/react@19.1.2':
     dependencies:
       csstype: 3.1.3
@@ -420,6 +459,8 @@ snapshots:
   typescript@5.8.3: {}
 
   ua-parser-js@1.0.40: {}
+
+  undici-types@6.21.0: {}
 
   valibot@1.0.0(typescript@5.8.3):
     optionalDependencies:
