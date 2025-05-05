@@ -7,3 +7,4 @@ packages:
   - "client"
   - "hooks"
   - "retry"
+  - "ip"
