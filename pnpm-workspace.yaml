@@ -6,3 +6,4 @@ packages:
   - "tma"
   - "client"
   - "hooks"
+  - "retry"

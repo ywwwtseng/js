@@ -33,6 +33,12 @@ importers:
 
   object: {}
 
+  retry:
+    dependencies:
+      '@libs/delay':
+        specifier: workspace:*
+        version: link:../delay
+
   telegram-bot:
     dependencies:
       '@libs/delay':
