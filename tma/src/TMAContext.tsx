@@ -16,6 +16,7 @@ export interface TMAContextState {
     delete: <T, U>(url: string, body?: U, options?: RequestInit) => Promise<T>;
   };
   state: unknown;
+  t: (key: string, params?: Record<string, string | number>) => string;
 }
 
 export const TMAContext = createContext<TMAContextState | undefined>(undefined);

@@ -67,6 +67,9 @@ importers:
       '@libs/json':
         specifier: workspace:*
         version: link:../json
+      '@libs/object':
+        specifier: workspace:*
+        version: link:../object
       '@telegram-apps/sdk-react':
         specifier: ^3.2.4
         version: 3.2.4(@types/react@19.1.2)(react@19.1.0)(typescript@5.8.3)

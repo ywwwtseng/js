@@ -7,14 +7,20 @@ import {
 import { init, postEvent } from '@telegram-apps/sdk-react';
 import { useClientOnce } from '@libs/hooks';
 import { Client } from '@libs/client';
+import { get } from '@libs/object';
 import { TonConnect, MockTonConnectUI, TonConnectUI } from './TonConnect';
 import { useTelegramSDK } from './hooks/useTelegramSDK';
 import { useForceUpdate } from './hooks/useForceUpdate';
 import { TMAContext } from './TMAContext';
 
+export type Locale = Record<string, Record<string, string>>;
+
+export type Locales = Record<string, Locale>;
+
 export interface TMAProviderProps {
   mock?: boolean;
   background?: `#${string}`;
+  locales?: Locales; 
   baseUrl: string;
   children: ReactNode;
 }
@@ -22,6 +28,7 @@ export interface TMAProviderProps {
 export function TMAProvider({
   mock = false,
   background = '#000000',
+  locales,
   baseUrl,
   children
 }: TMAProviderProps) {
@@ -32,6 +39,11 @@ export function TMAProvider({
   const { launchParams, initDataRaw } = useTelegramSDK(mock);
   const user = launchParams?.tgWebAppData?.user;
   const platform = launchParams?.tgWebAppPlatform;
+
+  const languageCode =
+    (state as any)?.meta?.language_code
+    || (state as any)?.language_code
+    || user.language_code;
 
   const tonConnect = useMemo<TonConnect>(() => new TonConnect({
     TonConnectUI: mock
@@ -71,6 +83,15 @@ export function TMAProvider({
       });
   }, [client]);
 
+  const t = useCallback((key: string, params?: Record<string, string | number>) => {
+    if (!locales) return key;
+    const locale = locales?.[languageCode?.toLowerCase()?.slice(0, 2)] || locales?.['en'];
+    if (!locale || typeof key !== 'string') return key;
+    const template = get(locale, key, key);
+    if (!params) return template;
+    return template.replace(/\{(\w+)\}/g, (_: string, key: string) => String(params[key]) || '');
+  }, [languageCode]);
+
   useClientOnce(() => {
     if (!mock && launchParams) {
       init();
@@ -109,7 +130,8 @@ export function TMAProvider({
       put: client.put.bind(client),
       delete: client.delete.bind(client),
     },
-  }), [user, platform, tonConnect, initDataRaw, avatar, authorized, client]);
+    t,
+  }), [user, platform, tonConnect, initDataRaw, avatar, authorized, client, t]);
 
   return (
     <TMAContext value={value}>

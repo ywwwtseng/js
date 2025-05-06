@@ -10,6 +10,7 @@
   "types": "./dist/index.d.ts",
   "dependencies": {
     "@libs/json": "workspace:*",
+    "@libs/object": "workspace:*",
     "@libs/hooks": "workspace:*",
     "@libs/client": "workspace:*"
   },

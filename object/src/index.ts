@@ -17,3 +17,18 @@ export const prune = (src: Record<string, unknown>): Record<string, unknown> => 
 
   return obj;
 };
+
+export const get = (obj: any, path: string, callback?: any) => {
+  const keys = path.split('.');
+  let anchor: any = obj;
+
+  for (let i = 0; i < keys.length; i++) {
+    anchor = anchor[keys[i]];
+
+    if (anchor === undefined) {
+      return callback ?? undefined;
+    }
+  }
+
+  return anchor;
+};
