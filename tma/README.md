@@ -1,4 +1,4 @@
-# Libraries required for developing a Telegram Mini App
+# TMA
 
 ### Install
 ```sh
