@@ -46,7 +46,7 @@ export const validateInitData = async (headers, token, alwaysPass = false) => {
             first_name: user.first_name || '',
             last_name: user.last_name || '',
             photo_url: user.photo_url || null,
-            language_code: user.language_code?.toLowerCase()?.slice(0, 2) || null,
+            language_code: user.language_code || null,
             start_param: parseStartParam(initData.get('start_param')),
         };
     }
