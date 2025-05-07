@@ -41,7 +41,9 @@ export function TMAProvider({ mock = false, background = '#000000', locales, bas
     const auth = useCallback(async () => {
         setAuthorized(false);
         client
-            .post('/auth', {}, { credentials: 'include' })
+            .post('/auth', {
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+        }, { credentials: 'include' })
             .then((res) => {
             setState(res?.data);
             setAuthorized(true);

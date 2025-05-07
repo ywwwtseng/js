@@ -72,7 +72,13 @@ export function TMAProvider({
     setAuthorized(false);
     
     client
-      .post<{ data: unknown }>('/auth', {}, { credentials: 'include' })
+      .post<{ data: unknown }>(
+        '/auth',
+        {
+          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+        },
+        { credentials: 'include' }
+      )
       .then((res) => {
         setState(res?.data);
         setAuthorized(true);
