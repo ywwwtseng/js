@@ -41,7 +41,7 @@ export function TMAProvider({ mock = false, background = '#000000', locales, bas
     const auth = useCallback(async () => {
         setAuthorized(false);
         client
-            .post('/auth')
+            .post('/auth', {}, { credentials: 'include' })
             .then((res) => {
             setState(res?.data);
             setAuthorized(true);

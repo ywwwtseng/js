@@ -72,7 +72,7 @@ export function TMAProvider({
     setAuthorized(false);
     
     client
-      .post<{ data: unknown }>('/auth')
+      .post<{ data: unknown }>('/auth', {}, { credentials: 'include' })
       .then((res) => {
         setState(res?.data);
         setAuthorized(true);
