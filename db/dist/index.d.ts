@@ -1,6 +1,5 @@
 // types.d.ts
 import {
-  AnyPgColumn,
   PgTableWithColumns,
 } from 'drizzle-orm/pg-core';
 
@@ -11,6 +10,9 @@ export type ColumnSchema =
       default?: number | string;
       primary?: boolean;
       notNull?: boolean;
+      references?: { table: string, column: string };
+      index?: boolean;
+      uniqueIndex?: boolean;
     }
   | {
       type: 'decimal';
@@ -27,18 +29,18 @@ export type ColumnSchema =
       opts?: { precision?: number };
       notNull?: boolean;
       default?: { fn: string }
-    };
+    }
+  | string;
 
 
 export type Schema = Record<string, ColumnSchema>;
 
-/**
- * 建立資料表
- * @param name 資料表名稱
- * @param schema 欄位定義
- * @returns 資料表物件
- */
 export declare function Table(
   name: string,
-  schema: Schema
-): PgTableWithColumns<any, Record<string, AnyPgColumn>>;
+  schemas: Record<string, Schema>,
+  tables?: Record<string, PgTableWithColumns<any>>,
+): PgTableWithColumns<any>;
+
+export declare function Tables(
+  schemas: Record<string, Schema>
+): Record<string, PgTableWithColumns<any>>;

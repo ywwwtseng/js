@@ -2,5 +2,5 @@
 
 ### Install
 ```sh
-bun add github:ywwwtseng/libs drizzle-orm drizzle-kit pg
+bun add -D github:ywwwtseng/libs drizzle-orm drizzle-kit pg fs
 ```
