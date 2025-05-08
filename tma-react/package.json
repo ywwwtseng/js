@@ -1,5 +1,5 @@
 {
-  "name": "@libs/tma",
+  "name": "@libs/tma-react",
   "version": "0.0.0",
   "private": true,
   "type": "module",

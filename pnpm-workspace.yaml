@@ -3,7 +3,7 @@ packages:
   - "delay"
   - "json"
   - "telegram-bot"
-  - "tma"
+  - "tma-react"
   - "tma-init-data"
   - "client"
   - "hooks"
