@@ -2,7 +2,7 @@ import { createContext } from 'react';
 import type { User, Platform } from '@telegram-apps/sdk-react';
 import { TonConnect } from './TonConnect';
 
-export interface TMAContextState {
+export interface TMAContextState<TState = unknown> {
   user: User | undefined;
   platform: Platform | undefined;
   tonConnect: TonConnect | undefined;
@@ -15,8 +15,9 @@ export interface TMAContextState {
     put: <T, U>(url: string, body?: U, options?: RequestInit) => Promise<T>;
     delete: <T, U>(url: string, body?: U, options?: RequestInit) => Promise<T>;
   };
-  state: unknown;
+  state: TState | undefined;
   t: (key: string, params?: Record<string, string | number>) => string;
+  mutate: (mutation: string | Record<string, unknown>, payload?: unknown) => Promise<unknown>;
 }
 
 export const TMAContext = createContext<TMAContextState | undefined>(undefined);

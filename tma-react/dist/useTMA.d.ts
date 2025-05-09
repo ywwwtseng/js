@@ -1,1 +1,2 @@
-export declare function useTMA(): import("./TMAContext").TMAContextState;
+import { TMAContextState } from './TMAContext';
+export declare function useTMA<TState>(): TMAContextState<TState>;

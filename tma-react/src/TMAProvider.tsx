@@ -7,7 +7,7 @@ import {
 import { init, postEvent } from '@telegram-apps/sdk-react';
 import { useClientOnce } from '@libs/hooks';
 import { Client } from '@libs/client';
-import { get } from '@libs/object';
+import * as object from '@libs/object';
 import { TonConnect, MockTonConnectUI, TonConnectUI } from './TonConnect';
 import { useTelegramSDK } from './hooks/useTelegramSDK';
 import { useForceUpdate } from './hooks/useForceUpdate';
@@ -93,10 +93,30 @@ export function TMAProvider({
     if (!locales) return key;
     const locale = locales?.[languageCode?.toLowerCase()?.slice(0, 2)] || locales?.['en'];
     if (!locale || typeof key !== 'string') return key;
-    const template = get(locale, key, key);
+    const template = object.get(locale, key, key);
     if (!params) return template;
     return template.replace(/\{(\w+)\}/g, (_: string, key: string) => String(params[key]) || '');
   }, [languageCode]);
+
+  const mutate = useCallback((mutation: string | Record<string, unknown>, payload?: unknown) => {
+    if (typeof mutation === 'string') {
+      return client.post('/update', {
+        path: mutation.split('.'),
+        value: payload,
+      }).then((res: any) => {
+        setState((state: any) => object.merge({}, state, res.data || {}));
+      });
+    } else if (object.is(mutation)) {
+      return client.post('/action', {
+        name: mutation.name,
+        params: payload,
+      }).then((res: any) => {
+        setState((state: any) => object.merge({}, state, res.data || {}));
+      });
+    } else {
+      throw new Error('Invalid mutation');
+    }
+  }, []);
 
   useClientOnce(() => {
     if (!mock && launchParams) {
@@ -136,8 +156,9 @@ export function TMAProvider({
       put: client.put.bind(client),
       delete: client.delete.bind(client),
     },
+    mutate,
     t,
-  }), [user, platform, tonConnect, initDataRaw, avatar, authorized, client, t]);
+  }), [user, platform, tonConnect, initDataRaw, avatar, authorized, state, client, t]);
 
   return (
     <TMAContext value={value}>

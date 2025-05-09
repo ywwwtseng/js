@@ -32,3 +32,29 @@ export const get = (obj: any, path: string, callback?: any) => {
 
   return anchor;
 };
+
+export const is = (obj: any) => {
+  return obj && typeof obj === 'object' && !Array.isArray(obj); 
+};
+
+export const merge = (target: any, ...sources: any[]) => {
+  for (const source of sources) {
+    if (!is(source)) continue;
+
+    for (const key in source) {
+      const sourceValue = source[key];
+      const targetValue = target[key];
+
+      if (is(sourceValue)) {
+        if (!is(targetValue)) {
+          target[key] = {};
+        }
+        merge(target[key], sourceValue);
+      } else {
+        target[key] = sourceValue;
+      }
+    }
+  }
+
+  return target;
+}

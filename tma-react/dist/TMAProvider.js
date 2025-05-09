@@ -3,7 +3,7 @@ import { useState, useMemo, useCallback } from 'react';
 import { init, postEvent } from '@telegram-apps/sdk-react';
 import { useClientOnce } from '@libs/hooks';
 import { Client } from '@libs/client';
-import { get } from '@libs/object';
+import * as object from '@libs/object';
 import { TonConnect, MockTonConnectUI, TonConnectUI } from './TonConnect';
 import { useTelegramSDK } from './hooks/useTelegramSDK';
 import { useForceUpdate } from './hooks/useForceUpdate';
@@ -59,11 +59,32 @@ export function TMAProvider({ mock = false, background = '#000000', locales, bas
         const locale = locales?.[languageCode?.toLowerCase()?.slice(0, 2)] || locales?.['en'];
         if (!locale || typeof key !== 'string')
             return key;
-        const template = get(locale, key, key);
+        const template = object.get(locale, key, key);
         if (!params)
             return template;
         return template.replace(/\{(\w+)\}/g, (_, key) => String(params[key]) || '');
     }, [languageCode]);
+    const mutate = useCallback((mutation, payload) => {
+        if (typeof mutation === 'string') {
+            return client.post('/update', {
+                path: mutation.split('.'),
+                value: payload,
+            }).then((res) => {
+                setState((state) => object.merge({}, state, res.data || {}));
+            });
+        }
+        else if (object.is(mutation)) {
+            return client.post('/action', {
+                name: mutation.name,
+                params: payload,
+            }).then((res) => {
+                setState((state) => object.merge({}, state, res.data || {}));
+            });
+        }
+        else {
+            throw new Error('Invalid mutation');
+        }
+    }, []);
     useClientOnce(() => {
         if (!mock && launchParams) {
             init();
@@ -98,7 +119,8 @@ export function TMAProvider({ mock = false, background = '#000000', locales, bas
             put: client.put.bind(client),
             delete: client.delete.bind(client),
         },
+        mutate,
         t,
-    }), [user, platform, tonConnect, initDataRaw, avatar, authorized, client, t]);
+    }), [user, platform, tonConnect, initDataRaw, avatar, authorized, state, client, t]);
     return (_jsx(TMAContext, { value: value, children: children }));
 }
