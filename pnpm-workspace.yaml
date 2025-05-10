@@ -11,3 +11,4 @@ packages:
   - "ip"
   - "errors"
   - "model"
+  - "types"

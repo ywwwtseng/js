@@ -1,4 +1,5 @@
-import { validate } from '@telegram-apps/init-data-node';
+import { env } from 'bun';
+import * as InitDataNode from '@telegram-apps/init-data-node';
 import { parse } from '@libs/json';
 import { AppError, ErrorCodes } from '@libs/errors';
 export var StartParamType;
@@ -26,15 +27,18 @@ export const parseStartParam = (startParam) => {
         value,
     };
 };
-export const validateInitData = async (headers, token, alwaysPass = false) => {
+export const validate = async (headers) => {
     const authorization = headers['authorization'];
     if (!authorization || !authorization.includes('tma')) {
         throw new AppError(ErrorCodes.INVALID_CREDENTIALS, 'Authorization header is missing or invalid');
     }
     const initData = new URLSearchParams(authorization.replace('tma ', ''));
     try {
-        if (!alwaysPass) {
-            validate(initData, token);
+        if (env.NODE_ENV !== 'development') {
+            if (!env.TELEGRAM_BOT_TOKEN) {
+                throw new AppError(ErrorCodes.INTERNAL_SERVER_ERROR, 'env.TELEGRAM_BOT_TOKEN is not configured');
+            }
+            InitDataNode.validate(initData, env.TELEGRAM_BOT_TOKEN);
         }
         const user = parse(initData.get('user'));
         if (!user) {
