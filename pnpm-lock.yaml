@@ -39,6 +39,12 @@ importers:
 
   json: {}
 
+  model:
+    devDependencies:
+      '@types/bun':
+        specifier: ^1.2.12
+        version: 1.2.12
+
   object: {}
 
   retry:
@@ -162,6 +168,9 @@ packages:
   '@tonconnect/ui@2.1.0':
     resolution: {integrity: sha512-Vds7DH8WmFjMYuFmaVBFoxOG7orjiHw+TH/ySbGhCt4N8yEwJT2GSnttmG5PYJ117H/5S81gCUVc03c1Dh+MDQ==}
 
+  '@types/bun@1.2.12':
+    resolution: {integrity: sha512-lY/GQTXDGsolT/TiH72p1tuyUORuRrdV7VwOTOjDOt8uTBJQOJc5zz3ufwwDl0VBaoxotSk4LdP0hhjLJ6ypIQ==}
+
   '@types/node@22.15.3':
     resolution: {integrity: sha512-lX7HFZeHf4QG/J7tBZqrCAXwz9J5RD56Y6MpP0eJkka8p+K0RY/yBTW7CYFJ4VGCclxqOLKmiGP5juQc6MKgcw==}
 
@@ -170,6 +179,9 @@ packages:
 
   better-promises@0.4.1:
     resolution: {integrity: sha512-cDW7eMvhvCoWzSih5o/OxsAgTUfP05yGMq77xNZUTmcZoNU9vEeFZJ+yJJi4lnocvxFrVFKsG0Yxt7ZnuYJEig==}
+
+  bun-types@1.2.12:
+    resolution: {integrity: sha512-tvWMx5vPqbRXgE8WUZI94iS1xAYs8bkqESR9cxBB1Wi+urvfTrF1uzuDgBHFAdO0+d2lmsbG3HmeKMvUyj6pWA==}
 
   classnames@2.5.1:
     resolution: {integrity: sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==}
@@ -396,6 +408,10 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
+  '@types/bun@1.2.12':
+    dependencies:
+      bun-types: 1.2.12
+
   '@types/node@22.15.3':
     dependencies:
       undici-types: 6.21.0
@@ -407,6 +423,10 @@ snapshots:
   better-promises@0.4.1:
     dependencies:
       error-kid: 0.0.7
+
+  bun-types@1.2.12:
+    dependencies:
+      '@types/node': 22.15.3
 
   classnames@2.5.1: {}
 
