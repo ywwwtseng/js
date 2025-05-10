@@ -1,0 +1,14 @@
+{
+  "name": "@libs/services",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "devDependencies": {
+    "@libs/types": "workspace:*"
+  }
+}
