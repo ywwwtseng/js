@@ -40,6 +40,10 @@ importers:
   json: {}
 
   model:
+    dependencies:
+      '@libs/object':
+        specifier: workspace:*
+        version: link:../object
     devDependencies:
       '@types/bun':
         specifier: ^1.2.12
@@ -54,7 +58,10 @@ importers:
         version: link:../delay
 
   services:
-    devDependencies:
+    dependencies:
+      '@libs/model':
+        specifier: workspace:*
+        version: link:../model
       '@libs/types':
         specifier: workspace:*
         version: link:../types

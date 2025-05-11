@@ -75,8 +75,8 @@ export function TMAProvider({ mock = false, background = '#000000', locales, bas
         }
         else if (object.is(mutation)) {
             return client.post('/action', {
-                name: mutation.name,
-                params: payload,
+                type: mutation.type,
+                payload,
             }).then((res) => {
                 setState((state) => object.merge({}, state, res.data || {}));
             });

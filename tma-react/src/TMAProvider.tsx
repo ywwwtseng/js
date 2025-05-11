@@ -108,8 +108,8 @@ export function TMAProvider({
       });
     } else if (object.is(mutation)) {
       return client.post('/action', {
-        name: mutation.name,
-        params: payload,
+        type: mutation.type,
+        payload,
       }).then((res: any) => {
         setState((state: any) => object.merge({}, state, res.data || {}));
       });

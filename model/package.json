@@ -8,6 +8,9 @@
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "dependencies": {
+    "@libs/object": "workspace:*"
+  },
   "devDependencies": {
     "@types/bun": "^1.2.12"
   }

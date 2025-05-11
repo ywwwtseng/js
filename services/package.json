@@ -8,7 +8,8 @@
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "devDependencies": {
-    "@libs/types": "workspace:*"
+  "dependencies": {
+    "@libs/types": "workspace:*",
+    "@libs/model": "workspace:*"
   }
 }
