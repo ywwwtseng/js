@@ -68,12 +68,12 @@ export function TMAProvider({
     });
   }, [initDataRaw]);
 
-  const auth = useCallback(async () => {
+  const launch = useCallback(async () => {
     setAuthorized(false);
     
     client
       .post<{ data: unknown }>(
-        '/auth',
+        '/launch',
         {
           timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
         },
@@ -139,7 +139,7 @@ export function TMAProvider({
   });
 
   useClientOnce(() => {
-    auth();
+    launch();
   });
   
   const value = useMemo(() => ({
