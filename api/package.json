@@ -1,5 +1,5 @@
 {
-  "name": "@libs/services",
+  "name": "@libs/api",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -10,6 +10,9 @@
   "types": "./dist/index.d.ts",
   "dependencies": {
     "@libs/types": "workspace:*",
-    "@libs/model": "workspace:*"
+    "@libs/model": "workspace:*",
+    "@libs/tma-init-data": "workspace:*",
+    "@libs/errors": "workspace:*",
+    "@libs/object": "workspace:*"
   }
 }

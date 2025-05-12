@@ -6,8 +6,3 @@ export type Action<TState, TPayload = unknown> = {
     effect?: (state: TState | undefined, payload: TPayload) => void;
     log?: boolean;
 };
-export declare const headers: (options?: Record<string, string>) => {
-    'Access-Control-Allow-Origin': string;
-    'Access-Control-Allow-Methods': string;
-    'Access-Control-Allow-Headers': string;
-};

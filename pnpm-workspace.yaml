@@ -12,4 +12,4 @@ packages:
   - "errors"
   - "model"
   - "types"
-  - "services"
+  - "api"

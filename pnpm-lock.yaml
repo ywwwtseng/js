@@ -59,9 +59,18 @@ importers:
 
   services:
     dependencies:
+      '@libs/errors':
+        specifier: workspace:*
+        version: link:../errors
       '@libs/model':
         specifier: workspace:*
         version: link:../model
+      '@libs/object':
+        specifier: workspace:*
+        version: link:../object
+      '@libs/tma-init-data':
+        specifier: workspace:*
+        version: link:../tma-init-data
       '@libs/types':
         specifier: workspace:*
         version: link:../types
