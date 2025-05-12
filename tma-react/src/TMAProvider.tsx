@@ -73,7 +73,7 @@ export function TMAProvider({
     
     client
       .post<{ data: unknown }>(
-        '/launch',
+        '/api/launch',
         {
           timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
         },
@@ -100,14 +100,14 @@ export function TMAProvider({
 
   const mutate = useCallback((mutation: string | Record<string, unknown>, payload?: unknown) => {
     if (typeof mutation === 'string') {
-      return client.post('/update', {
+      return client.post('/api/update', {
         path: mutation.split('.'),
         value: payload,
       }).then((res: any) => {
         setState((state: any) => object.merge({}, state, res.data || {}));
       });
     } else if (object.is(mutation)) {
-      return client.post('/action', {
+      return client.post('/api/action', {
         type: mutation.type,
         payload,
       }).then((res: any) => {

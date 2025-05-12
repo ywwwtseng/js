@@ -41,7 +41,7 @@ export function TMAProvider({ mock = false, background = '#000000', locales, bas
     const launch = useCallback(async () => {
         setAuthorized(false);
         client
-            .post('/launch', {
+            .post('/api/launch', {
             timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
         })
             .then((res) => {
@@ -66,7 +66,7 @@ export function TMAProvider({ mock = false, background = '#000000', locales, bas
     }, [languageCode]);
     const mutate = useCallback((mutation, payload) => {
         if (typeof mutation === 'string') {
-            return client.post('/update', {
+            return client.post('/api/update', {
                 path: mutation.split('.'),
                 value: payload,
             }).then((res) => {
@@ -74,7 +74,7 @@ export function TMAProvider({ mock = false, background = '#000000', locales, bas
             });
         }
         else if (object.is(mutation)) {
-            return client.post('/action', {
+            return client.post('/api/action', {
                 type: mutation.type,
                 payload,
             }).then((res) => {
