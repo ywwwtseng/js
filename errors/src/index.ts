@@ -76,6 +76,7 @@ export const ErrorMessages = {
 export class AppError extends Error {
   cause: {
     code: number;
+    message: string;
     status: number;
   };
 
@@ -92,6 +93,7 @@ export class AppError extends Error {
 
     this.cause = {
       code,
+      message: this.message,
       status: this.status,
     };
   }

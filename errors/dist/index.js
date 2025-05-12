@@ -73,6 +73,7 @@ export class AppError extends Error {
         this.status = status;
         this.cause = {
             code,
+            message: this.message,
             status: this.status,
         };
     }

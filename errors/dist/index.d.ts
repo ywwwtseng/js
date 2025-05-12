@@ -53,6 +53,7 @@ export declare class AppError extends Error {
     readonly status: number;
     cause: {
         code: number;
+        message: string;
         status: number;
     };
     constructor(code: number, message?: string, status?: number);
