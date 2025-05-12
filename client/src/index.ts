@@ -14,7 +14,7 @@ export class Client {
   onError?: <T>(res: Response, data: T) => void;
 
   constructor({ baseUrl, headers, transformRequest, onResponse, onError }: ClientOptions = {}) {
-    this.baseUrl = baseUrl || "";
+    this.baseUrl = baseUrl || '';
     this.headers = headers;
     this.transformRequest = transformRequest;
     this.onResponse = onResponse;
@@ -23,8 +23,8 @@ export class Client {
 
   async request<T>(url: string, options?: RequestInit):  Promise<T> {
     let headers = new Headers({ ...this.headers, ...options?.headers });
-    if (!headers.get("Content-Type")) {
-      headers.set("Content-Type", "application/json; charset=utf-8");
+    if (!headers.get('Content-Type')) {
+      headers.set('Content-Type', 'application/json; charset=utf-8');
     }
 
     if (this.transformRequest) {
@@ -46,7 +46,7 @@ export class Client {
         this.onError<T>(res, data);
       }
       throw { status: res.status, data };
-    } else if (res.headers.get("Content-Type") === "application/octet-stream") {
+    } else if (res.headers.get('Content-Type') === 'application/octet-stream') {
       const data = await res.blob();
       return data as T;
     } else {
@@ -61,7 +61,7 @@ export class Client {
 
   post<T, U = unknown>(url: string, body?: U, options?: RequestInit): Promise<T> {
     return this.request<T>(url, {
-      method: "POST",
+      method: 'POST',
       body: body instanceof FormData ? body : JSON.stringify(body || {}),
       ...options,
     });
@@ -69,7 +69,7 @@ export class Client {
 
   put<T, U = unknown>(url: string, body?: U, options?: RequestInit): Promise<T> {
     return this.request<T>(url, {
-      method: "PUT",
+      method: 'PUT',
       body: JSON.stringify(body || {}),
       ...options,
     });
@@ -77,7 +77,7 @@ export class Client {
 
   delete<T, U = unknown>(url: string, body?: U, options?: RequestInit): Promise<T> {
     return this.request<T>(url, {
-      method: "DELETE",
+      method: 'DELETE',
       body: JSON.stringify(body || {}),
       ...options,
     });
