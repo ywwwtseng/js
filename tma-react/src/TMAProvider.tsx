@@ -77,7 +77,7 @@ export function TMAProvider({
         {
           timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
         },
-        { credentials: 'include' }
+        // { credentials: 'include' }
       )
       .then((res) => {
         setState(res?.data);

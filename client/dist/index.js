@@ -5,7 +5,7 @@ export class Client {
     onResponse;
     onError;
     constructor({ baseUrl, headers, transformRequest, onResponse, onError } = {}) {
-        this.baseUrl = baseUrl || "";
+        this.baseUrl = baseUrl || '';
         this.headers = headers;
         this.transformRequest = transformRequest;
         this.onResponse = onResponse;
@@ -13,8 +13,8 @@ export class Client {
     }
     async request(url, options) {
         let headers = new Headers({ ...this.headers, ...options?.headers });
-        if (!headers.get("Content-Type")) {
-            headers.set("Content-Type", "application/json; charset=utf-8");
+        if (!headers.get('Content-Type')) {
+            headers.set('Content-Type', 'application/json; charset=utf-8');
         }
         if (this.transformRequest) {
             headers = this.transformRequest(headers);
@@ -33,7 +33,7 @@ export class Client {
             }
             throw { status: res.status, data };
         }
-        else if (res.headers.get("Content-Type") === "application/octet-stream") {
+        else if (res.headers.get('Content-Type') === 'application/octet-stream') {
             const data = await res.blob();
             return data;
         }
@@ -47,21 +47,21 @@ export class Client {
     }
     post(url, body, options) {
         return this.request(url, {
-            method: "POST",
+            method: 'POST',
             body: body instanceof FormData ? body : JSON.stringify(body || {}),
             ...options,
         });
     }
     put(url, body, options) {
         return this.request(url, {
-            method: "PUT",
+            method: 'PUT',
             body: JSON.stringify(body || {}),
             ...options,
         });
     }
     delete(url, body, options) {
         return this.request(url, {
-            method: "DELETE",
+            method: 'DELETE',
             body: JSON.stringify(body || {}),
             ...options,
         });

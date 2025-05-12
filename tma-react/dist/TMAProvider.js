@@ -43,7 +43,7 @@ export function TMAProvider({ mock = false, background = '#000000', locales, bas
         client
             .post('/launch', {
             timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
-        }, { credentials: 'include' })
+        })
             .then((res) => {
             setState(res?.data);
             setAuthorized(true);

@@ -32,8 +32,8 @@ export const parseStartParam = (startParam: string | null) => {
   };
 };
 
-export const validate = async (headers: Record<string, string | undefined>) => {
-  const authorization = headers['authorization'];
+export const validate = async (headers: Headers) => {
+  const authorization = headers.get('Authorization');
 
     if (!authorization || !authorization.includes('tma')) {
       throw new AppError(ErrorCodes.INVALID_CREDENTIALS, 'Authorization header is missing or invalid');

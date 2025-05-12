@@ -7,7 +7,7 @@ export declare const parseStartParam: (startParam: string | null) => {
     type: string;
     value: string;
 };
-export declare const validate: (headers: Record<string, string | undefined>) => Promise<{
+export declare const validate: (headers: Headers) => Promise<{
     telegram_id: string;
     username: string;
     first_name: string;
