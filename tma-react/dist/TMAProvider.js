@@ -12,6 +12,7 @@ export function TMAProvider({ mock = false, background = '#000000', locales, bas
     const [avatar, setAvatar] = useState(null);
     const [authorized, setAuthorized] = useState(false);
     const [state, setState] = useState(undefined);
+    const [loading, setLoading] = useState([]);
     const forceUpdate = useForceUpdate();
     const { launchParams, initDataRaw } = useTelegramSDK(mock);
     const user = launchParams?.tgWebAppData?.user;
@@ -65,26 +66,32 @@ export function TMAProvider({ mock = false, background = '#000000', locales, bas
         return template.replace(/\{(\w+)\}/g, (_, key) => String(params[key]) || '');
     }, [languageCode]);
     const mutate = useCallback((mutation, payload) => {
-        if (typeof mutation === 'string') {
-            return client.post('/api/update', {
+        const mutationType = typeof mutation === 'string' ? mutation : mutation.type;
+        if (loading.includes(mutationType)) {
+            return Promise.reject(`${mutationType} update mutation is processing...`);
+        }
+        const endpoint = typeof mutation === 'string' ? '/api/update' : '/api/action';
+        const body = typeof mutation === 'string'
+            ? {
                 path: mutation.split('.'),
                 value: payload,
-            }).then((res) => {
-                setState((state) => object.merge({}, state, res.data || {}));
-            });
-        }
-        else if (object.is(mutation)) {
-            return client.post('/api/action', {
+            }
+            : {
                 type: mutation.type,
                 payload,
-            }).then((res) => {
-                setState((state) => object.merge({}, state, res.data || {}));
-            });
-        }
-        else {
-            throw new Error('Invalid mutation');
-        }
-    }, []);
+            };
+        setLoading((prev) => ([...prev, mutationType]));
+        return client.post(endpoint, body).then((res) => {
+            setState((state) => object.merge({}, state, res.data || {}));
+        }).catch((error) => {
+            console.error(error);
+        }).finally(() => {
+            setLoading((prev) => prev.filter((m) => m !== mutationType));
+        });
+    }, [loading]);
+    const isLoading = useCallback((mutation) => {
+        return loading.includes(typeof mutation === 'string' ? mutation : mutation.type);
+    }, [loading]);
     useClientOnce(() => {
         if (!mock && launchParams) {
             init();
@@ -120,6 +127,7 @@ export function TMAProvider({ mock = false, background = '#000000', locales, bas
             delete: client.delete.bind(client),
         },
         mutate,
+        isLoading,
         t,
     }), [user, platform, tonConnect, initDataRaw, avatar, authorized, state, client, t]);
     return (_jsx(TMAContext, { value: value, children: children }));

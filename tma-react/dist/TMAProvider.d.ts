@@ -8,4 +8,4 @@ export interface TMAProviderProps {
     baseUrl: string;
     children: ReactNode;
 }
-export declare function TMAProvider({ mock, background, locales, baseUrl, children }: TMAProviderProps): import("react/jsx-runtime").JSX.Element;
+export declare function TMAProvider<TState>({ mock, background, locales, baseUrl, children }: TMAProviderProps): import("react/jsx-runtime").JSX.Element;

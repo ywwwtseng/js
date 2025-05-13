@@ -12,7 +12,8 @@
     "@libs/json": "workspace:*",
     "@libs/object": "workspace:*",
     "@libs/hooks": "workspace:*",
-    "@libs/client": "workspace:*"
+    "@libs/client": "workspace:*",
+    "@libs/api": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^19.1.0"

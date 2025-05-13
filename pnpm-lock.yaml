@@ -111,6 +111,9 @@ importers:
 
   tma-react:
     dependencies:
+      '@libs/api':
+        specifier: workspace:*
+        version: link:../api
       '@libs/client':
         specifier: workspace:*
         version: link:../client

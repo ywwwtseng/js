@@ -1,5 +1,6 @@
 import { createContext } from 'react';
 import type { User, Platform } from '@telegram-apps/sdk-react';
+import type { Action } from '@libs/api';
 import { TonConnect } from './TonConnect';
 
 export interface TMAContextState<TState = unknown> {
@@ -17,7 +18,8 @@ export interface TMAContextState<TState = unknown> {
   };
   state: TState | undefined;
   t: (key: string, params?: Record<string, string | number>) => string;
-  mutate: (mutation: string | Record<string, unknown>, payload?: unknown) => Promise<unknown>;
+  mutate: <TPayload>(mutation: string | Action<TState, TPayload>, payload?: unknown) => Promise<unknown>;
+  isLoading: (mutation: string | Action<TState, any>) => boolean;
 }
 
 export const TMAContext = createContext<TMAContextState | undefined>(undefined);

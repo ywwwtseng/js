@@ -7,7 +7,7 @@ import type { Action } from '../types';
 
 export const mutation = <
   TState extends Record<keyof TState, any>,
-  TActions extends Record<keyof TState, Action<TState>>,
+  TActions extends Record<keyof TState, Action<TState, unknown>>,
 >({
   updates,
   actions,

@@ -55,19 +55,26 @@ const { user, platform } = useTMA();
 ### State Management
 ```tsx
 import { useTMA } from '@libs/tma';
+import * as updates from 'shared/updates';
+import * as actions from 'shared/actions';
+import type { State } from 'shared/state';
 
-const { state, mutation } = useTMA();
+const { state, mutation, isLoading } = useTMA<State>();
+
 // Get language_code
-state.meta.language_code
+state.meta.language_code;
 // Update language_code
-mutation('update:state.meta.language_code', 'en');
+mutation(updates.language, 'en');
+isLoading(updates.language);
 // Execute reward action
-mutation('action:reward', { task_type: 0 });
+mutation(actions.reward, { task_type: 0 });
+isLoading(actions.reward);
 ```
 
 ### TonConnect
 ```ts
 import { useTMA } from '@libs/tma';
+
 
 const { tonConnect } = useTMA();
 

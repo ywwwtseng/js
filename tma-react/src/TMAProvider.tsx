@@ -8,10 +8,11 @@ import { init, postEvent } from '@telegram-apps/sdk-react';
 import { useClientOnce } from '@libs/hooks';
 import { Client } from '@libs/client';
 import * as object from '@libs/object';
+import type { Action } from '@libs/api';
 import { TonConnect, MockTonConnectUI, TonConnectUI } from './TonConnect';
 import { useTelegramSDK } from './hooks/useTelegramSDK';
 import { useForceUpdate } from './hooks/useForceUpdate';
-import { TMAContext } from './TMAContext';
+import { TMAContext, TMAContextState } from './TMAContext';
 
 export type Locale = Record<string, Record<string, string>>;
 
@@ -25,7 +26,7 @@ export interface TMAProviderProps {
   children: ReactNode;
 }
 
-export function TMAProvider({
+export function TMAProvider<TState>({
   mock = false,
   background = '#000000',
   locales,
@@ -34,7 +35,8 @@ export function TMAProvider({
 }: TMAProviderProps) {
   const [avatar, setAvatar] = useState<HTMLImageElement | null>(null);
   const [authorized, setAuthorized] = useState<boolean>(false);
-  const [state, setState] = useState<unknown>(undefined);
+  const [state, setState] = useState<TMAContextState<TState>['state']>(undefined);
+  const [loading, setLoading] = useState([]);
   const forceUpdate = useForceUpdate();
   const { launchParams, initDataRaw } = useTelegramSDK(mock);
   const user = launchParams?.tgWebAppData?.user;
@@ -72,7 +74,7 @@ export function TMAProvider({
     setAuthorized(false);
     
     client
-      .post<{ data: unknown }>(
+      .post<{ data: any }>(
         '/api/launch',
         {
           timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
@@ -98,25 +100,38 @@ export function TMAProvider({
     return template.replace(/\{(\w+)\}/g, (_: string, key: string) => String(params[key]) || '');
   }, [languageCode]);
 
-  const mutate = useCallback((mutation: string | Record<string, unknown>, payload?: unknown) => {
-    if (typeof mutation === 'string') {
-      return client.post('/api/update', {
+  const mutate = useCallback((mutation: string | Action<TState, any>, payload?: any) => {
+    const mutationType = typeof mutation === 'string' ? mutation : mutation.type;
+
+    if (loading.includes(mutationType)) {
+      return Promise.reject(`${mutationType} update mutation is processing...`);
+    }
+
+    const endpoint = typeof mutation === 'string' ? '/api/update' : '/api/action';
+    const body = typeof mutation === 'string'
+      ? {
         path: mutation.split('.'),
         value: payload,
-      }).then((res: any) => {
-        setState((state: any) => object.merge({}, state, res.data || {}));
-      });
-    } else if (object.is(mutation)) {
-      return client.post('/api/action', {
+      }
+      : {
         type: mutation.type,
         payload,
-      }).then((res: any) => {
-        setState((state: any) => object.merge({}, state, res.data || {}));
-      });
-    } else {
-      throw new Error('Invalid mutation');
-    }
-  }, []);
+      };
+
+      setLoading((prev) => ([...prev, mutationType]));
+
+    return client.post(endpoint, body).then((res: any) => {
+      setState((state: any) => object.merge({}, state, res.data || {}));
+    }).catch((error) => {
+      console.error(error);
+    }).finally(() => {
+      setLoading((prev) => prev.filter((m) => m !== mutationType));
+    });
+  }, [loading]);
+
+  const isLoading = useCallback((mutation: string | Action<TState, any>) => {
+    return loading.includes(typeof mutation === 'string' ? mutation : mutation.type);
+  }, [loading]);
 
   useClientOnce(() => {
     if (!mock && launchParams) {
@@ -157,6 +172,7 @@ export function TMAProvider({
       delete: client.delete.bind(client),
     },
     mutate,
+    isLoading,
     t,
   }), [user, platform, tonConnect, initDataRaw, avatar, authorized, state, client, t]);
 
