@@ -13,3 +13,4 @@ packages:
   - "model"
   - "types"
   - "api"
+  - "db"

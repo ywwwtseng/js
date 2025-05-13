@@ -4,7 +4,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
