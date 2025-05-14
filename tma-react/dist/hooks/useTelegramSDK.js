@@ -1,13 +1,13 @@
 import { useMemo } from 'react';
 import { mockTelegramEnv, retrieveLaunchParams, retrieveRawInitData, isTMA, } from '@telegram-apps/sdk-react';
-export function useTelegramSDK(mock) {
+export function useTelegramSDK(mock, mockTelegramId) {
     return useMemo(() => {
         if (mock) {
             mockTelegramEnv({
                 launchParams: {
                     tgWebAppData: new URLSearchParams([
                         ['user', JSON.stringify({
-                                id: 6666666666,
+                                id: Number(mockTelegramId) || 6666666666,
                                 first_name: 'T',
                                 last_name: 'yw',
                                 username: 'ywwwtseng',

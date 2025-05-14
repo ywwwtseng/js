@@ -6,14 +6,14 @@ import {
   isTMA,
 } from '@telegram-apps/sdk-react';
 
-export function useTelegramSDK(mock: boolean) {
+export function useTelegramSDK(mock: boolean, mockTelegramId: string | number | undefined) {
   return useMemo(() => {
     if (mock) {
       mockTelegramEnv({
         launchParams: {
           tgWebAppData: new URLSearchParams([
             ['user', JSON.stringify({
-              id: 6666666666,
+              id: Number(mockTelegramId) || 6666666666,
               first_name: 'T',
               last_name: 'yw',
               username: 'ywwwtseng',

@@ -1,4 +1,4 @@
-export declare function useTelegramSDK(mock: boolean): {
+export declare function useTelegramSDK(mock: boolean, mockTelegramId: string | number | undefined): {
     launchParams: {
         tgWebAppBotInline?: boolean;
         tgWebAppData?: {

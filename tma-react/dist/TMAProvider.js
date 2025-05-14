@@ -8,13 +8,13 @@ import { TonConnect, MockTonConnectUI, TonConnectUI } from './TonConnect';
 import { useTelegramSDK } from './hooks/useTelegramSDK';
 import { useForceUpdate } from './hooks/useForceUpdate';
 import { TMAContext } from './TMAContext';
-export function TMAProvider({ mock = false, background = '#000000', locales, baseUrl, children }) {
+export function TMAProvider({ mock = false, mockTelegramId, background = '#000000', locales, baseUrl, children }) {
     const [avatar, setAvatar] = useState(null);
     const [authorized, setAuthorized] = useState(false);
     const [state, setState] = useState(undefined);
     const [loading, setLoading] = useState([]);
     const forceUpdate = useForceUpdate();
-    const { launchParams, initDataRaw } = useTelegramSDK(mock);
+    const { launchParams, initDataRaw } = useTelegramSDK(mock, mockTelegramId);
     const user = launchParams?.tgWebAppData?.user;
     const platform = launchParams?.tgWebAppPlatform;
     const languageCode = state?.meta?.language_code

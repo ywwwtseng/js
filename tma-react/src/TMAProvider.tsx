@@ -20,6 +20,7 @@ export type Locales = Record<string, Locale>;
 
 export interface TMAProviderProps {
   mock?: boolean;
+  mockTelegramId?: string | number | undefined;
   background?: `#${string}`;
   locales?: Locales; 
   baseUrl: string;
@@ -28,6 +29,7 @@ export interface TMAProviderProps {
 
 export function TMAProvider<TState>({
   mock = false,
+  mockTelegramId,
   background = '#000000',
   locales,
   baseUrl,
@@ -38,7 +40,7 @@ export function TMAProvider<TState>({
   const [state, setState] = useState<TMAContextState<TState>['state']>(undefined);
   const [loading, setLoading] = useState([]);
   const forceUpdate = useForceUpdate();
-  const { launchParams, initDataRaw } = useTelegramSDK(mock);
+  const { launchParams, initDataRaw } = useTelegramSDK(mock, mockTelegramId);
   const user = launchParams?.tgWebAppData?.user;
   const platform = launchParams?.tgWebAppPlatform;
 
