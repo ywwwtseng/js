@@ -1,2 +1,3 @@
 export { mutation } from './mutation';
-export { telegramBotWebhook } from './telegram-bot-webwook';
+export type { WebhookCallback } from './webhooks';
+export { webhooks } from './webhooks';

@@ -1,6 +1,6 @@
-type WebhookCallback = ({ chat_id, language_code }: { chat_id: number, language_code: string }) => Promise<void>;
+export type WebhookCallback = ({ chat_id, language_code }: { chat_id: number, language_code: string }) => Promise<void>;
 
-export const telegramBotWebhook = <T extends string>(
+export const webhooks = <T extends string>(
   path: T,
   callkack: Record<string, WebhookCallback>
 ) => ({

@@ -1,2 +1,2 @@
 export { mutation } from './mutation';
-export { telegramBotWebhook } from './telegram-bot-webwook';
+export { webhooks } from './webhooks';

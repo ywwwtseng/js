@@ -13,6 +13,7 @@
     "@libs/model": "workspace:*",
     "@libs/tma-init-data": "workspace:*",
     "@libs/errors": "workspace:*",
-    "@libs/object": "workspace:*"
+    "@libs/object": "workspace:*",
+    "@libs/telegram-bot": "workspace:*"
   }
 }

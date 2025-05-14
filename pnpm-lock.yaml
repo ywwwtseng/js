@@ -26,6 +26,9 @@ importers:
       '@libs/object':
         specifier: workspace:*
         version: link:../object
+      '@libs/telegram-bot':
+        specifier: workspace:*
+        version: link:../telegram-bot
       '@libs/tma-init-data':
         specifier: workspace:*
         version: link:../tma-init-data
