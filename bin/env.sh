@@ -39,6 +39,18 @@ if [[ -z "$POSTGRES_URL" ]]; then
   echo "❌ 無法取得 POSTGRES_URL，請檢查 Pulumi 設定"
 fi
 
+REDIS_URL=$(pulumi stack output redisUrl --show-secrets 2>/dev/null)
+
+if [[ -z "$REDIS_URL" ]]; then
+  REDIS_URL=$(pulumi config get env:REDIS_URL)
+else
+  echo "REDIS_URL=${REDIS_URL}" | tee -a ../api/.env ../db/.env > /dev/null
+fi
+
+if [[ -z "$REDIS_URL" ]]; then
+  echo "❌ 無法取得 REDIS_URL，請檢查 Pulumi 設定"
+fi
+
 pulumi config --show-secrets | awk '
   NR == 1 { next } # 跳過表頭
   /^env:/ {
