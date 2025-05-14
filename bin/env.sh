@@ -1,9 +1,9 @@
 #!/bin/bash
 
-ENV=$1
+STACK_NAME=$1
 
-if [[ -z "$ENV" ]]; then
-  echo "Please specify the environment, e.g.: ./set-env.sh dev or ./set-env.sh prod"
+if [[ -z "$STACK_NAME" ]]; then
+  echo "Please specify the pulumi stack, e.g.: ./set-env.sh [org]/[env]"
   exit 1
 fi
 
@@ -18,8 +18,6 @@ else
   exit 1
 fi
 
-STACK_NAME="gravityxlab/$ENV"
-
 echo "🔍 選擇 Pulumi stack: $STACK_NAME"
 if ! pulumi stack select "$STACK_NAME" --non-interactive; then
   echo "❌ 無法選擇 stack: $STACK_NAME，請確認 stack 是否存在"
@@ -27,12 +25,19 @@ if ! pulumi stack select "$STACK_NAME" --non-interactive; then
 fi
 
 pulumi stack select "$STACK_NAME"
-
-POSTGRES_URL=$(pulumi stack output postgresUrl --show-secrets)
-
 rm -f ../api/.env ../db/.env ../web/.env
 
-echo "POSTGRES_URL=${POSTGRES_URL}" | tee -a ../api/.env ../db/.env > /dev/null
+POSTGRES_URL=$(pulumi stack output postgresUrl --show-secrets 2>/dev/null)
+
+if [[ -z "$POSTGRES_URL" ]]; then
+  POSTGRES_URL=$(pulumi config get env:POSTGRES_URL)
+else
+  echo "POSTGRES_URL=${POSTGRES_URL}" | tee -a ../api/.env ../db/.env > /dev/null
+fi
+
+if [[ -z "$POSTGRES_URL" ]]; then
+  echo "❌ 無法取得 POSTGRES_URL，請檢查 Pulumi 設定"
+fi
 
 pulumi config --show-secrets | awk '
   NR == 1 { next } # 跳過表頭
