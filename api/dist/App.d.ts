@@ -1,8 +1,10 @@
 import type { WebhookCallback } from './services';
-interface AppOptions {
-    port?: number;
-    routes?: Record<string, any>;
-    bot?: Record<string, WebhookCallback>;
+export declare class App {
+    #private;
+    constructor();
+    use: (service: unknown) => this;
+    bot: ({ onText }: {
+        onText: Record<string, WebhookCallback>;
+    }) => this;
+    listen: (port?: number) => Bun.Server;
 }
-export declare function App({ routes, bot, port }?: AppOptions): Bun.Server;
-export {};
