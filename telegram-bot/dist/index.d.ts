@@ -7,10 +7,16 @@ export type InlineKeyboard = {
 export type ReplyMarkup = {
     inline_keyboard: InlineKeyboard;
 };
-export declare function sendPhoto({ token, message, chat_id, photo_url, reply_markup, }: {
+export declare function sendPhoto({ token, chat_id, photo_url, message, reply_markup, }: {
     token: string;
-    message: string;
     chat_id: string;
     photo_url: string;
+    message: string;
+    reply_markup?: ReplyMarkup;
+}): Promise<any>;
+export declare function sendMessage({ token, chat_id, message, reply_markup, }: {
+    token: string;
+    chat_id: string;
+    message: string;
     reply_markup?: ReplyMarkup;
 }): Promise<any>;
