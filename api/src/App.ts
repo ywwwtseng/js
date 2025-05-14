@@ -2,8 +2,8 @@ import { env } from 'bun';
 import { AppError, ErrorCodes } from '@libs/errors';
 import * as services from './services';
 import * as webhooks from './webhooks';
-import type { WebhookCallback } from './services';
 import { init, headers } from './utils';
+import type { WebhookCallback } from './services';
 
 export class App {
   #routes: Record<string, unknown>;
@@ -38,7 +38,7 @@ export class App {
       routes: {
         '/api/status': new Response('OK'),
         ...services.webhooks('/api/telegram/webhook', {
-          ...(this.#routes['/admin/signin'] ? webhooks.admin() : {}),
+          ...(this.#routes['/api/admin/signin'] ? webhooks.admin() : {}),
           ...this.#webhooks,
         }),
         ...this.#routes,

@@ -31,7 +31,7 @@ export class App {
             routes: {
                 '/api/status': new Response('OK'),
                 ...services.webhooks('/api/telegram/webhook', {
-                    ...(this.#routes['/admin/signin'] ? webhooks.admin() : {}),
+                    ...(this.#routes['/api/admin/signin'] ? webhooks.admin() : {}),
                     ...this.#webhooks,
                 }),
                 ...this.#routes,
