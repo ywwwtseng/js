@@ -15,5 +15,10 @@
     "@libs/errors": "workspace:*",
     "@libs/object": "workspace:*",
     "@libs/telegram-bot": "workspace:*"
+  },
+  "peerDependencies": {
+    "@telegram-apps/init-data-node": "^2.0.3",
+    "jose": "^6.0.11",
+    "jsonwebtoken": "^9.0.2"
   }
 }

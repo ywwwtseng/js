@@ -12,11 +12,11 @@
     "@libs/errors": "workspace:*",
     "@libs/json": "workspace:*"
   },
-  "peerDependencies": {
-    "@telegram-apps/init-data-node": "^2.0.3"
-  },
   "devDependencies": {
     "@types/bun": "^1.2.12",
     "@types/node": "^22.15.3"
+  },
+  "peerDependencies": {
+    "@telegram-apps/init-data-node": "^2.0.3"
   }
 }

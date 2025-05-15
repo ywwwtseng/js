@@ -13,7 +13,7 @@ export const admin = () => ({
       await redis.expire(key, 10);
 
       if (env.NODE_ENV === 'development') {
-        console.log(`https://${env.DOMAIN}/admin/sigin?code=${code}`);
+        console.log(`https://${env.DOMAIN}/api/admin/sigin?code=${code}`);
         return;
       }
 
@@ -26,7 +26,7 @@ export const admin = () => ({
             [
               {
                 text: 'Go',
-                url: `https://${env.DOMAIN}/admin/sigin?code=${code}`,
+                url: `https://${env.DOMAIN}/api/admin/sigin?code=${code}`,
               },
             ]
           ],
