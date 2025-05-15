@@ -2,7 +2,6 @@ import { validate } from '@libs/tma-init-data';
 import { AppError, ErrorCodes } from '@libs/errors';
 import * as object from '@libs/object';
 import * as model from '@libs/model';
-import { headers } from '../utils';
 import type { Action } from '../types';
 
 export const mutation = <
@@ -27,14 +26,8 @@ export const mutation = <
 
       const result = await model.set(telegram_id, body.path, body.value);
 
-      return Response.json({ data: result }, {
-        headers: headers(),
-      });
+      return Response.json({ data: result });
     },
-    OPTIONS: () => new Response(null, {
-      status: 204,
-      headers: headers(),
-    }),
   },
   '/api/action': {
     POST: async (req: Bun.BunRequest<'/api/action'>) => {
@@ -75,13 +68,7 @@ export const mutation = <
         );
       }
 
-      return Response.json({ data: result || {} }, {
-        headers: headers(),
-      });
+      return Response.json({ data: result || {} });
     },
-    OPTIONS: () => new Response(null, {
-      status: 204,
-      headers: headers(),
-    }),
   }
 });

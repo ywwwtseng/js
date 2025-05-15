@@ -5,10 +5,8 @@ export declare const mutation: <TState extends Record<keyof TState, any>, TActio
 }) => {
     '/api/update': {
         POST: (req: Bun.BunRequest<"/api/update">) => Promise<Response>;
-        OPTIONS: () => Response;
     };
     '/api/action': {
         POST: (req: Bun.BunRequest<"/api/action">) => Promise<Response>;
-        OPTIONS: () => Response;
     };
 };

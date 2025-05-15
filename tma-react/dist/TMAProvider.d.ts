@@ -6,7 +6,7 @@ export interface TMAProviderProps {
     mockTelegramId?: string | number | undefined;
     background?: `#${string}`;
     locales?: Locales;
-    baseUrl: string;
+    baseUrl?: string;
     children: ReactNode;
 }
 export declare function TMAProvider<TState>({ mock, mockTelegramId, background, locales, baseUrl, children }: TMAProviderProps): import("react/jsx-runtime").JSX.Element;

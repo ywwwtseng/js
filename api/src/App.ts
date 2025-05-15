@@ -2,7 +2,7 @@ import { env } from 'bun';
 import { AppError, ErrorCodes } from '@libs/errors';
 import * as services from './services';
 import * as webhooks from './webhooks';
-import { init, headers } from './utils';
+import { init } from './init';
 import type { WebhookCallback } from './services';
 
 export class App {
@@ -56,7 +56,6 @@ export class App {
             error,
             {
               status: error.status,
-              headers: headers(),
             }
           );
       },

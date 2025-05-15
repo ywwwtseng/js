@@ -2,7 +2,7 @@ import { env } from 'bun';
 import { AppError, ErrorCodes } from '@libs/errors';
 import * as services from './services';
 import * as webhooks from './webhooks';
-import { init, headers } from './utils';
+import { init } from './init';
 export class App {
     #routes;
     #webhooks;
@@ -42,7 +42,6 @@ export class App {
                     : new AppError(ErrorCodes.INTERNAL_SERVER_ERROR, bunError?.toString() || JSON.stringify(bunError));
                 return Response.json(error, {
                     status: error.status,
-                    headers: headers(),
                 });
             },
             port,

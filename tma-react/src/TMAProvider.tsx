@@ -23,7 +23,7 @@ export interface TMAProviderProps {
   mockTelegramId?: string | number | undefined;
   background?: `#${string}`;
   locales?: Locales; 
-  baseUrl: string;
+  baseUrl?: string;
   children: ReactNode;
 }
 

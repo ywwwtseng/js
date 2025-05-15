@@ -2,7 +2,6 @@ import { validate } from '@libs/tma-init-data';
 import { AppError, ErrorCodes } from '@libs/errors';
 import * as object from '@libs/object';
 import * as model from '@libs/model';
-import { headers } from '../utils';
 export const mutation = ({ updates, actions, }) => ({
     '/api/update': {
         POST: async (req) => {
@@ -12,14 +11,8 @@ export const mutation = ({ updates, actions, }) => ({
                 throw new AppError(ErrorCodes.INVALID_PARAMS);
             }
             const result = await model.set(telegram_id, body.path, body.value);
-            return Response.json({ data: result }, {
-                headers: headers(),
-            });
+            return Response.json({ data: result });
         },
-        OPTIONS: () => new Response(null, {
-            status: 204,
-            headers: headers(),
-        }),
     },
     '/api/action': {
         POST: async (req) => {
@@ -44,13 +37,7 @@ export const mutation = ({ updates, actions, }) => ({
             if (action.effect) {
                 action.effect(Boolean(state && result) ? object.merge(state, result) : undefined, body.payload);
             }
-            return Response.json({ data: result || {} }, {
-                headers: headers(),
-            });
+            return Response.json({ data: result || {} });
         },
-        OPTIONS: () => new Response(null, {
-            status: 204,
-            headers: headers(),
-        }),
     }
 });
