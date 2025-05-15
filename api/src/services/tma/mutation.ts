@@ -2,7 +2,7 @@ import { validate } from '@libs/tma-init-data';
 import { AppError, ErrorCodes } from '@libs/errors';
 import * as object from '@libs/object';
 import * as model from '@libs/model';
-import type { Action } from '../types';
+import type { Action } from '../../types';
 
 export const mutation = <
   TState extends Record<keyof TState, any>,
