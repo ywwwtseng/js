@@ -1,4 +1,4 @@
-import { delay } from '@libs/delay';
+import { sleep } from '@libs/sleep';
 export const retry = ({ retries, delay_ms = 3000, condition, }) => {
     return async function retry(exec) {
         let attempts = 0;
@@ -25,7 +25,7 @@ export const retry = ({ retries, delay_ms = 3000, condition, }) => {
             }
             attempts++;
             if (attempts < retries) {
-                await delay(delay_ms * attempts);
+                await sleep(delay_ms * attempts);
             }
         }
         throw new Error(`retry: Failed after ${retries} attempts`);

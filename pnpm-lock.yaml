@@ -53,8 +53,6 @@ importers:
         specifier: ^0.43.1
         version: 0.43.1(bun-types@1.2.12)
 
-  delay: {}
-
   errors: {}
 
   hooks:
@@ -89,15 +87,14 @@ importers:
 
   retry:
     dependencies:
-      '@libs/delay':
+      '@libs/sleep':
         specifier: workspace:*
-        version: link:../delay
+        version: link:../sleep
+
+  sleep: {}
 
   telegram-bot:
     dependencies:
-      '@libs/delay':
-        specifier: workspace:*
-        version: link:../delay
       '@libs/object':
         specifier: workspace:*
         version: link:../object
