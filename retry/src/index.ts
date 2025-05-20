@@ -1,4 +1,4 @@
-import { delay } from '@libs/delay';
+import { sleep } from '@libs/sleep';
 
 interface RetrySettings<T> {
   retries: number;
@@ -36,7 +36,7 @@ export const retry = <T>({
       attempts++;
   
       if (attempts < retries) {
-        await delay(delay_ms * attempts);
+        await sleep(delay_ms * attempts);
       }
     }
   

@@ -16,6 +16,9 @@
     "@libs/object": "workspace:*",
     "@libs/telegram-bot": "workspace:*"
   },
+  "devDependencies": {
+    "@types/bun": "^1.2.12"
+  },
   "peerDependencies": {
     "@telegram-apps/init-data-node": "^2.0.3",
     "jose": "^6.0.11",

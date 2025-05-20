@@ -13,17 +13,18 @@ export const cookies = (headers: Headers) => {
 
 export const sign = async (payload: Record<string, any>, expirationTime: string, token: string) => {
   const jwt = await new SignJWT(payload)
-  .setProtectedHeader({ alg: 'HS256' })
-  .setIssuedAt()
-  .setExpirationTime(expirationTime)
-  .sign(new TextEncoder().encode(token));
+    .setProtectedHeader({ alg: 'HS256' })
+    .setIssuedAt()
+    .setExpirationTime(expirationTime)
+    .sign(new TextEncoder().encode(token));
 
+  return jwt;
 };
 
 export const verify = async (jwt: string, token: string) => {
   try {
     if (!jwt) {
-      throw new AppError(ErrorCodes.INVALID_CREDENTIALS);
+      throw new AppError(ErrorCodes.INVALID_CREDENTIALS, 'Missing token');
     }
 
     const { payload } = await jwtVerify(
@@ -33,10 +34,6 @@ export const verify = async (jwt: string, token: string) => {
   
     return payload;
   } catch (error) {
-    if (error.code === 'ERR_JWT_EXPIRED') {
-      throw new AppError(ErrorCodes.TOKEN_EXPIRED, error.code);
-    }
-
-    throw new AppError(ErrorCodes.INVALID_CREDENTIALS);
+    throw new AppError(ErrorCodes.INVALID_CREDENTIALS, JSON.stringify(error));
   }
 };

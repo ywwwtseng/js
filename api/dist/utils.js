@@ -13,19 +13,17 @@ export const sign = async (payload, expirationTime, token) => {
         .setIssuedAt()
         .setExpirationTime(expirationTime)
         .sign(new TextEncoder().encode(token));
+    return jwt;
 };
 export const verify = async (jwt, token) => {
     try {
         if (!jwt) {
-            throw new AppError(ErrorCodes.INVALID_CREDENTIALS);
+            throw new AppError(ErrorCodes.INVALID_CREDENTIALS, 'Missing token');
         }
         const { payload } = await jwtVerify(jwt, new TextEncoder().encode(token));
         return payload;
     }
     catch (error) {
-        if (error.code === 'ERR_JWT_EXPIRED') {
-            throw new AppError(ErrorCodes.TOKEN_EXPIRED, error.code);
-        }
-        throw new AppError(ErrorCodes.INVALID_CREDENTIALS);
+        throw new AppError(ErrorCodes.INVALID_CREDENTIALS, JSON.stringify(error));
     }
 };
