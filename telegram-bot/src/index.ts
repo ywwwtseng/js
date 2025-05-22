@@ -1,4 +1,4 @@
-import { prune } from '@libs/object';
+import { prune } from '@lib/object';
 
 export const MAX_MESSAGES_PER_MINUTE = 24;
 export const DELAY_BETWEEN_MESSAGES_MS = (60 * 1000) / MAX_MESSAGES_PER_MINUTE;

@@ -1,5 +1,5 @@
 import { CHAIN } from '@tonconnect/ui';
-import { parse } from '@libs/json';
+import { parse } from '@lib/json';
 export class MockTonConnectUI {
     wallet = (parse(sessionStorage.getItem('mock-tonconnect-wallet')) ?? null);
     handleStatusChange;

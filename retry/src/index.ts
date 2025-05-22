@@ -1,4 +1,4 @@
-import { sleep } from '@libs/sleep';
+import { sleep } from '@lib/sleep';
 
 interface RetrySettings<T> {
   retries: number;

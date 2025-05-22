@@ -1,5 +1,22 @@
 {
-  "name": "@libs",
+  "name": "@lib",
+  "dependencies": {
+    "@types/bun": "^1.2.12",
+    "@types/node": "^22.15.3",
+    "@types/react": "^19.1.0",
+    "react": "^19.1.0",
+    "jose": "^6.0.11",
+    "jsonwebtoken": "^9.0.2",
+    "drizzle-orm": "^0.43.1",
+    "@telegram-apps/init-data-node": "^2.0.3",
+    "@telegram-apps/sdk-react": "^3.2.4",
+    "@tonconnect/ui": "^2.1.0",
+    "@pulumi/aws": "^6",
+    "@pulumi/pulumi": "^3",
+    "fs": "^0.0.1-security",
+    "mime": "^4.0.7",
+    "path": "^0.12.7"
+  },
   "devDependencies": {
     "turbo": "^2.5.0",
     "typescript": "^5.8.3"

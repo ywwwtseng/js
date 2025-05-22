@@ -1,6 +1,6 @@
 import { env, redis, randomUUIDv7 } from 'bun';
-import * as model from '@libs/model';
-import * as telegramBot from '@libs/telegram-bot';
+import * as model from '@lib/model';
+import * as telegramBot from '@lib/telegram-bot';
 export const admin = () => ({
     '/admin': async ({ chat_id }) => {
         const user = await model.receive(String(chat_id), 'user');

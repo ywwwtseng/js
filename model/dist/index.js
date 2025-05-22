@@ -1,5 +1,5 @@
 import { sql } from 'bun';
-import * as object from '@libs/object';
+import * as object from '@lib/object';
 export const join = (temp, fragment) => {
     return temp ? sql `${temp}, ${sql `${fragment}`}` : sql `${fragment}`;
 };

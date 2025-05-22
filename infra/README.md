@@ -1,10 +1,5 @@
 # Infra
 
-### Install
-```sh
-bun add github:ywwwtseng/libs @pulumi/aws @pulumi/pulumi fs mime path
-```
-
 ### Setup
 
 Pulumi.yaml
@@ -35,5 +30,5 @@ pulumi destroy
 
 ### Example
 ```js
-export * from '@libs/infra';
+export * from '@lib/infra';
 ```

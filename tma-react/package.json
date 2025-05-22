@@ -1,5 +1,5 @@
 {
-  "name": "@libs/tma-react",
+  "name": "@lib/tma-react",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -9,16 +9,14 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "@libs/json": "workspace:*",
-    "@libs/object": "workspace:*",
-    "@libs/hooks": "workspace:*",
-    "@libs/client": "workspace:*",
-    "@libs/api": "workspace:*"
-  },
-  "devDependencies": {
-    "@types/react": "^19.1.0"
+    "@lib/json": "workspace:*",
+    "@lib/object": "workspace:*",
+    "@lib/hooks": "workspace:*",
+    "@lib/client": "workspace:*",
+    "@lib/api": "workspace:*"
   },
   "peerDependencies": {
+    "@types/react": "^19.1.0",
     "@telegram-apps/sdk-react": "^3.2.4",
     "@tonconnect/ui": "^2.1.0",
     "react": "^19.1.0"

@@ -1,9 +1,9 @@
 import { jsx as _jsx } from "react/jsx-runtime";
 import { useState, useMemo, useCallback } from 'react';
 import { init, postEvent } from '@telegram-apps/sdk-react';
-import { useClientOnce } from '@libs/hooks';
-import { Client } from '@libs/client';
-import * as object from '@libs/object';
+import { useClientOnce } from '@lib/hooks';
+import { Client } from '@lib/client';
+import * as object from '@lib/object';
 import { TonConnect, MockTonConnectUI, TonConnectUI } from './TonConnect';
 import { useTelegramSDK } from './hooks/useTelegramSDK';
 import { useForceUpdate } from './hooks/useForceUpdate';

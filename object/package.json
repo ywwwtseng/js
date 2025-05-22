@@ -1,5 +1,5 @@
 {
-  "name": "@libs/object",
+  "name": "@lib/object",
   "version": "0.0.0",
   "private": true,
   "type": "module",

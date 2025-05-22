@@ -1,5 +1,5 @@
 import { env } from 'bun';
-import { AppError, ErrorCodes } from '@libs/errors';
+import { AppError, ErrorCodes } from '@lib/errors';
 import * as services from './services';
 import * as webhooks from './webhooks';
 import { init } from './init';

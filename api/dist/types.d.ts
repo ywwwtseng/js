@@ -1,4 +1,4 @@
-import type { RecursiveStateReducer } from '@libs/model';
+import type { RecursiveStateReducer } from '@lib/model';
 export type Action<TState, TPayload = unknown> = {
     type: string;
     validate?: (state: TState, payload: TPayload) => boolean;

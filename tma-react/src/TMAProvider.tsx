@@ -5,10 +5,10 @@ import {
   type ReactNode
 } from 'react';
 import { init, postEvent } from '@telegram-apps/sdk-react';
-import { useClientOnce } from '@libs/hooks';
-import { Client } from '@libs/client';
-import * as object from '@libs/object';
-import type { Action } from '@libs/api';
+import { useClientOnce } from '@lib/hooks';
+import { Client } from '@lib/client';
+import * as object from '@lib/object';
+import type { Action } from '@lib/api';
 import { TonConnect, MockTonConnectUI, TonConnectUI } from './TonConnect';
 import { useTelegramSDK } from './hooks/useTelegramSDK';
 import { useForceUpdate } from './hooks/useForceUpdate';

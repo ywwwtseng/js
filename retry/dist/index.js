@@ -1,4 +1,4 @@
-import { sleep } from '@libs/sleep';
+import { sleep } from '@lib/sleep';
 export const retry = ({ retries, delay_ms = 3000, condition, }) => {
     return async function retry(exec) {
         let attempts = 0;

@@ -1,5 +1,5 @@
 {
-  "name": "@libs/api",
+  "name": "@lib/api",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -9,17 +9,15 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "@libs/types": "workspace:*",
-    "@libs/model": "workspace:*",
-    "@libs/tma-init-data": "workspace:*",
-    "@libs/errors": "workspace:*",
-    "@libs/object": "workspace:*",
-    "@libs/telegram-bot": "workspace:*"
-  },
-  "devDependencies": {
-    "@types/bun": "^1.2.12"
+    "@lib/types": "workspace:*",
+    "@lib/model": "workspace:*",
+    "@lib/tma-init-data": "workspace:*",
+    "@lib/errors": "workspace:*",
+    "@lib/object": "workspace:*",
+    "@lib/telegram-bot": "workspace:*"
   },
   "peerDependencies": {
+    "@types/bun": "^1.2.12",
     "@telegram-apps/init-data-node": "^2.0.3",
     "jose": "^6.0.11",
     "jsonwebtoken": "^9.0.2"

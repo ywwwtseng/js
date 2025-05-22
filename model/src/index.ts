@@ -1,5 +1,5 @@
 import { sql, SQLQuery } from 'bun';
-import * as object from '@libs/object';
+import * as object from '@lib/object';
 
 export type IsPlainObject<T> = T extends object
   ? T extends Function

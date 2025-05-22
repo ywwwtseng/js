@@ -1,5 +1,5 @@
 import type { User, Platform } from '@telegram-apps/sdk-react';
-import type { Action } from '@libs/api';
+import type { Action } from '@lib/api';
 import { TonConnect } from './TonConnect';
 export interface TMAContextState<TState = unknown> {
     user: User | undefined;

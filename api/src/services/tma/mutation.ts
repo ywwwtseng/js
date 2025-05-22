@@ -1,7 +1,7 @@
-import { validate } from '@libs/tma-init-data';
-import { AppError, ErrorCodes } from '@libs/errors';
-import * as object from '@libs/object';
-import * as model from '@libs/model';
+import { validate } from '@lib/tma-init-data';
+import { AppError, ErrorCodes } from '@lib/errors';
+import * as object from '@lib/object';
+import * as model from '@lib/model';
 import type { Action } from '../../types';
 
 export const mutation = <

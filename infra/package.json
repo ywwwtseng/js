@@ -1,5 +1,5 @@
 {
-  "name": "@libs/infra",
+  "name": "@lib/infra",
   "version": "0.0.0",
   "private": true,
   "type": "module",

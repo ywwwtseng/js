@@ -1,5 +1,5 @@
 import { SignJWT, jwtVerify } from 'jose';
-import { AppError, ErrorCodes } from '@libs/errors';
+import { AppError, ErrorCodes } from '@lib/errors';
 export const cookies = (headers) => {
     const cookieHeader = headers.get('cookie') || '';
     return Object.fromEntries(cookieHeader.split(';').map(cookie => {

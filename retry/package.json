@@ -1,5 +1,5 @@
 {
-  "name": "@libs/retry",
+  "name": "@lib/retry",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -9,6 +9,6 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "@libs/sleep": "workspace:*"
+    "@lib/sleep": "workspace:*"
   }
 }

@@ -1,4 +1,4 @@
-import { retry } from '@libs/retry';
+import { retry } from '@lib/retry';
 
 interface IpInfoRaw {
   ip: string;

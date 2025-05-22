@@ -1,5 +1,5 @@
 {
-  "name": "@libs/tma-init-data",
+  "name": "@lib/tma-init-data",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -9,12 +9,8 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "@libs/errors": "workspace:*",
-    "@libs/json": "workspace:*"
-  },
-  "devDependencies": {
-    "@types/bun": "^1.2.12",
-    "@types/node": "^22.15.3"
+    "@lib/errors": "workspace:*",
+    "@lib/json": "workspace:*"
   },
   "peerDependencies": {
     "@telegram-apps/init-data-node": "^2.0.3"

@@ -1,7 +1,7 @@
 import { env } from 'bun';
 import * as InitDataNode from '@telegram-apps/init-data-node';
-import { parse } from '@libs/json';
-import { AppError, ErrorCodes } from '@libs/errors';
+import { parse } from '@lib/json';
+import { AppError, ErrorCodes } from '@lib/errors';
 
 export enum StartParamType {
   NONE = 'n',

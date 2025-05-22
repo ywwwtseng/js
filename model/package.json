@@ -1,5 +1,5 @@
 {
-  "name": "@libs/model",
+  "name": "@lib/model",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -9,9 +9,6 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "@libs/object": "workspace:*"
-  },
-  "devDependencies": {
-    "@types/bun": "^1.2.12"
+    "@lib/object": "workspace:*"
   }
 }

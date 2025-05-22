@@ -9,7 +9,7 @@ bun add github:ywwwtseng/libs @tonconnect/ui @telegram-apps/sdk-react
 ```tsx
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { TMAProvider } from '@libs/tma';
+import { TMAProvider } from '@lib/tma';
 import { en } from '@/locales/en';
 import { zh } from '@/locales/zh';
 import App from '@/App';
@@ -32,7 +32,7 @@ createRoot(document.getElementById('root')!).render(
 
 ### I18n
 ```tsx
-import { useTMA, Typography } from '@libs/tma';
+import { useTMA, Typography } from '@lib/tma';
 // common.count: "Count: {count}"
 
 const { t } = useTMA();
@@ -47,14 +47,14 @@ t('common.count', { count: 1 });
 ```
 ### LaunchParams
 ```tsx
-import { useTMA } from '@libs/tma';
+import { useTMA } from '@lib/tma';
 
 const { user, platform } = useTMA();
 ```
 
 ### State Management
 ```tsx
-import { useTMA } from '@libs/tma';
+import { useTMA } from '@lib/tma';
 import * as updates from 'shared/updates';
 import * as actions from 'shared/actions';
 import type { State } from 'shared/state';
@@ -73,7 +73,7 @@ isLoading(actions.reward);
 
 ### TonConnect
 ```ts
-import { useTMA } from '@libs/tma';
+import { useTMA } from '@lib/tma';
 
 
 const { tonConnect } = useTMA();

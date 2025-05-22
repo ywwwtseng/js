@@ -1,4 +1,4 @@
-import { retry } from '@libs/retry';
+import { retry } from '@lib/retry';
 export const ipAddress = (headers) => {
     if (headers instanceof Headers) {
         return headers.get('x-forwarded-for')?.split(',')?.[0] || headers.get('x-real-ip') || '127.0.0.1';

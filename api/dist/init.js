@@ -1,4 +1,4 @@
-import { AppError, ErrorCodes } from '@libs/errors';
+import { AppError, ErrorCodes } from '@lib/errors';
 export const init = (env, keys) => {
     const missing = [];
     for (let index = 0; index < keys.length; index++) {
